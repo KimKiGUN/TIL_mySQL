@@ -47,7 +47,7 @@ pymysql.connect() 메소드를 사용하여 MySQL에 연결
 
 ```python
 # dbms 연결코드 (connect)
-db = pymysql.connect(host='localhost', port = 3306, user='root', password='goqkfkrl1!', charset = 'utf8')
+db = pymysql.connect(host='localhost', port = 3306, user='root', password='password', charset = 'utf8')
 ```
 
 
@@ -210,7 +210,7 @@ db.close()
 import pymysql
 
 # 2. 접속하기
-db = pymysql.connect(host='localhost', port = 3306, user = 'root', passwd = 'goqkfkrl1!', db = 'ecommerce', charset = 'utf8')
+db = pymysql.connect(host='localhost', port = 3306, user = 'root', passwd = 'password', db = 'ecommerce', charset = 'utf8')
 ```
 
 
