@@ -260,3 +260,231 @@ db.commit()
 # 7. DB 연결 닫기
 db.close()
 ```
+
+데이터 삽입(INSERT)
+- CURSOR OBJECT 가져오기 : cursor = db.cursor()
+- SQL 실행하기 : cursor.execute(SQL)
+- 실행 mysql 서버에 확정 반영하기 : db.commit()
+
+
+```python
+# 1. 라이브러리 가져오기
+import pymysql
+
+# 2. 접속하기
+db = pymysql.connect(host='localhost', port = 3306, user='root', passwd='password',db = 'ecommerce', charset='utf8')
+
+```
+
+
+```python
+# 3. 커서 가져오기
+cursor = db.cursor()
+```
+
+
+```python
+for index in range(10):
+    product_code = 216573140+index+1
+    # print(product_code)
+    sql = """INSERT INTO PRODUCT2 VALUES(
+    '""" + str(product_code) + """', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');"""
+    print(sql)
+    cursor.execute(sql)
+```
+
+    INSERT INTO PRODUCT2 VALUES(
+        '216573141', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573142', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573143', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573144', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573145', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573146', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573147', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573148', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573149', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    INSERT INTO PRODUCT2 VALUES(
+        '216573150', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F');
+    
+
+
+```python
+db.commit() # 입력된 데이터를 db 서버에 확정 시키기
+```
+
+
+```python
+db.close()
+```
+
+데이터 조회(SELECT)
+- cursor object 가져오기 : cursor = db.cursor()
+- SQL 실행하기 : cursor.execute(SQL)
+- mysql 서버로부터 데이터 가져오기 : fetch 메서드 사용
+  - fetchall(): Fetch all the rows
+  - fetchmany(size = None) : Fetch several rows
+  - fetchone() : Fetch the next row
+
+
+```python
+import pymysql
+```
+
+
+```python
+db = pymysql.connect(host='localhost', port = 3306, user='root', passwd='password',db = 'ecommerce', charset='utf8')
+cursor = db.cursor()
+```
+
+
+```python
+sql = 'select * from product2'
+cursor.execute(sql)
+```
+
+
+
+
+    10
+
+
+
+
+```python
+result = cursor.fetchone() # 현재 커서를 다음 레코드로 이동시키고 해당 레코드를 반환
+result
+```
+
+
+
+
+    ('216573141', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F')
+
+
+
+
+```python
+result = cursor.fetchall()
+result
+```
+
+
+
+
+    (('216573142', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573143', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573144', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573145', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573146', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573147', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573148', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573149', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'),
+     ('216573150', '스위트바니 여름신상5900원~롱원피스티셔츠/긴팔/반팔', 23000, 6900, 70, 'F'))
+
+
+
+
+```python
+db.close()
+```
+
+데이터 수정(UPDATE)
+- cursor object 가져오기 : cursor = db.cursor()
+- SQL 실행하기 : cursor.execute(SQL)
+- mysql 서버에 확정 반영하기 : db.commit()
+
+
+```python
+# 1. 라이브러리 가져오기
+import pymysql
+
+# 2. 접속하기
+db = pymysql.connect(host='localhost', port = 3306, user='root', passwd='password',db = 'ecommerce', charset='utf8')
+
+# 3. 커서 가져오기
+cursor = db.cursor()
+```
+
+
+```python
+# 4. SQL 구문 만들기
+sql = """
+update product2 set
+title = '하늘하늘 원피스 썸머 스페셜 가디건',
+ori_price = 33000,
+discount_price = 9900,
+discount_percent=70
+where product_code = '216573141'
+"""
+
+# 5. sql 구문 실행하기
+cursor.execute(sql)
+
+# 6. commit 하기
+db.commit()
+```
+
+
+```python
+# 7. update 확인
+sql = 'select * from product2 where product_code = 216573141'
+cursor.execute(sql)
+result = cursor.fetchone()
+result
+```
+
+
+
+
+    ('216573141', '하늘하늘 원피스 썸머 스페셜 가디건', 33000, 9900, 70, 'F')
+
+
+
+
+```python
+db.close()
+```
+
+데이터 삭제(DELETE)
+- cursor object 가져오기 : cursor = db.cursor()
+- SQL 실행하기 : cursor.execute(SQL)
+- mysql 서버에 확정 반영하기 : db.commit()
+
+
+```python
+import pymysql
+db = pymysql.connect(host='localhost', port = 3306, user='root', passwd='password',db = 'ecommerce', charset='utf8')
+cursor = db.cursor()
+```
+
+
+```python
+sql = "delete from product where product_code ='216573141'"
+cursor.execute(sql)
+db.commit()
+db.close()
+```
+
+
+```python
+db = pymysql.connect(host='localhost', port = 3306, user='root', passwd='password',db = 'ecommerce', charset='utf8')
+
+cursor = db.cursor()
+
+sql = """select * from product where product_code = '216573141'"""
+
+cursor.execute(sql)
+
+result = cursor.fetchone()
+print(result)
+db.commit()
+db.close()
+```
